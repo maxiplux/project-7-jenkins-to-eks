@@ -1,14 +1,19 @@
 version: '3.7'
 services:
   jenkins:
-    image: maxiplux/jenkins:latest
+    image: maxiplux/jenkins:1.0.4
     
     restart: always
     privileged: true
     user: root
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - DOCKER_PASSWORD=TOKEN_HERE
     ports:
       - 8080:8080
       - 50000:50000
     container_name: jenkins
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      #docker exec -it <mycontainer> bash
+

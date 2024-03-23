@@ -35,7 +35,7 @@ RUN sudo apt-get update -y
 
 
 # Add the Jenkins repository key and repository
-RUN sudo apt-get install -y pip docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+RUN sudo apt-get install -y curl unzip pip mc docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
 
@@ -50,6 +50,10 @@ RUN  wget -O /usr/share/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/de
 RUN echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
 RUN apt-get update
 RUN apt-get install -y jenkins
+
+RUN cd /tmp && curl -LO  https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv kubectl /usr/local/bin
+
+RUN cd /tmp && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sh ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
 
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -68,7 +72,9 @@ RUN python3.11 --version
 RUN jenkins --version
 
 #RUN setfacl -m user:$USER:rw /var/run/docker.sock
-RUN usermod -aG docker jenkins
+RUN sudo usermod -aG docker jenkins
+RUN sudo touch  /var/run/docker.sock && sudo chown jenkins:jenkins /var/run/docker.sock
+RUN sudo chmod a+rwx /var/run/docker.sock
 
 
 
@@ -81,5 +87,7 @@ EXPOSE 50000
 
 # Set the default command
 # Set Jenkins to run as the entrypoint
+
 CMD ["tail", "-f", "/dev/null"]
 #docker buildx build --platform=linux/arm64,linux/amd64 --push --tag maxiplux/jenkins:latest -f ./Dockerfile .
+#Get-Content password1.txt | docker login --username maxiplux --password-stdin
