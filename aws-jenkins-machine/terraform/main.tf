@@ -214,7 +214,7 @@ resource "aws_instance" "terraform_instance_master" {
               sudo service docker start
 
               cd /tmp && curl -LO  https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv kubectl /usr/local/bin
-              cd /tmp && wget https://raw.githubusercontent.com/maxiplux/project-7-jenkins-to-eks/main/aws-jenkins-machine/docker-compose.yml
+              cd /tmp && https://raw.githubusercontent.com/maxiplux/project-7-jenkins-to-eks/main/aws-jenkins-machine/docker-compose.yml
               cd /tmp && sudo docker compose up -d
               echo "echo found" > /tmp/STATUS
               EOF
