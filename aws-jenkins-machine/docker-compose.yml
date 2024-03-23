@@ -15,7 +15,7 @@ services:
     container_name: jenkins
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - tmp_jenkins_home:/var/jenkins_home
+      - /home/ubuntu:/var/jenkins_home
       - /tmp:/tmp/host_tmp
       #docker exec -it <mycontainer> bash
 
