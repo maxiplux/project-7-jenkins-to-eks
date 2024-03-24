@@ -35,7 +35,7 @@ RUN sudo apt-get update -y
 
 
 # Add the Jenkins repository key and repository
-RUN sudo apt-get install -y curl unzip pip mc docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+RUN sudo apt-get install -y python3-pip curl unzip pip mc htop lynx net-tools docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
 
@@ -89,5 +89,5 @@ EXPOSE 50000
 # Set Jenkins to run as the entrypoint
 
 CMD ["tail", "-f", "/dev/null"]
-#docker buildx build --platform=linux/arm64,linux/amd64 --push --tag maxiplux/jenkins:latest -f ./Dockerfile .
+#docker buildx build --platform=linux/arm64,linux/amd64 --push --tag maxiplux/jenkins:1.0.5 -f ./Dockerfile .
 #Get-Content password1.txt | docker login --username maxiplux --password-stdin

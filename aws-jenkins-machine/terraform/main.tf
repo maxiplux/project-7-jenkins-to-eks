@@ -172,10 +172,17 @@ provider "tls" {}
 
 
 resource "aws_instance" "terraform_instance_master" {
-  ami      = "ami-053b0d53c279acc90"
+  ami      = "ami-0b8b44ec9a8f90422"
   key_name = aws_key_pair.generated_key.key_name
 
   instance_type = "t2.medium"
+  ebs_block_device {
+    device_name = "/dev/sda1"  # The device name might vary based on the instance type and OS
+    volume_type = "gp2"        # General Purpose SSD
+    volume_size = 100           # Size of the volume in GiB
+    delete_on_termination = true
+  }
+
   subnet_id     = aws_subnet.terraform_subnet.id
 
 
@@ -203,9 +210,10 @@ resource "aws_instance" "terraform_instance_master" {
 
 
 
-              sudo apt-get install awscli curl mc htop docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin git -y
+              sudo apt-get install awscli curl mc htop python3-pip docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin git -y
 
-              cd /tmp && curl -LO  https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl && sudo chmod +x ./kubectl && sudo mv  kubectl /usr/local/bin
+              cd /tmp && curl -LO  https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl && sudo chmod +x ./kubectl && sudo mv  kubectl /usr/local/bin
+
               RUN cd /tmp && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo sh ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
 
               sudo usermod -aG docker ubuntu
@@ -216,6 +224,7 @@ resource "aws_instance" "terraform_instance_master" {
               cd /tmp && curl -LO  https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv kubectl /usr/local/bin
               cd /tmp && https://raw.githubusercontent.com/maxiplux/project-7-jenkins-to-eks/main/aws-jenkins-machine/docker-compose.yml
               cd /tmp && sudo docker compose up -d
+              docker exec -it jenkins  /etc/init.d/jenkins start
               echo "echo found" > /tmp/STATUS
               EOF
 }

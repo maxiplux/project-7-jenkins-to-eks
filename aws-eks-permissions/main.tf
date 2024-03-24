@@ -26,87 +26,11 @@ resource "aws_iam_policy" "ec2_eks_management" {
 {
   "Version": "2012-10-17",
   "Statement": [
-{
+       {
             "Effect": "Allow",
-            "Action": "ssm:GetParameter",
+            "Action": "*",
             "Resource": "*"
         }
-,
-    {
-      "Action": [
-        "ec2:*",
-        "eks:*",
-        "iam:*",
-               "eks:CreateCluster",
-                "eks:DeleteCluster",
-                "eks:DescribeCluster",
-                "eks:ListClusters",
-                "eks:UpdateClusterConfig",
-                "eks:UpdateClusterVersion",
-                "eks:CreateNodegroup",
-                "eks:DeleteNodegroup",
-                "eks:DescribeNodegroup",
-                "eks:ListNodegroups",
-                "eks:UpdateNodegroupConfig",
-                "eks:UpdateNodegroupVersion",
-                "iam:GetRole",
-                "iam:ListRoles",
-                "ec2:DescribeInstances",
-                "ec2:DescribeRegions",
-                "ssm:GetParameters"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-        {
-            "Action": "ec2:*",
-            "Effect": "Allow",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "elasticloadbalancing:*",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "cloudwatch:*",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "autoscaling:*",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "iam:CreateServiceLinkedRole",
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {
-                    "iam:AWSServiceName": [
-                        "autoscaling.amazonaws.com",
-                        "ec2scheduled.amazonaws.com",
-                        "elasticloadbalancing.amazonaws.com",
-                        "spot.amazonaws.com",
-                        "spotfleet.amazonaws.com",
-                        "transitgateway.amazonaws.com"
-                    ]
-                }
-            }
-        },
-{
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:*"
-            ],
-            "Resource": "*"
-        }
-
-
-
-
-
   ]
 }
 EOF
@@ -160,6 +84,8 @@ output "iam_user_secret_access_key" {
 }
 #terraform output -raw iam_user_secret_access_key
 #aws sts get-caller-identity
+#terraform destroy  -auto-approve
+#terraform apply  -auto-approve
 
 
 

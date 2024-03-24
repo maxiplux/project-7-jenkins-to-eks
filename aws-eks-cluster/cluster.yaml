@@ -6,10 +6,12 @@ metadata:
   name: weclouddata
   region: us-east-1
 
+
+
 nodeGroups:
   - name: ng-1
     instanceType: t3.small
     desiredCapacity: 1
   - name: ng-2
     instanceType: t3.small
-    desiredCapacity: 2
+    desiredCapacity: 1

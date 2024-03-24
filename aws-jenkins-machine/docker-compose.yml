@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   jenkins:
-    image: maxiplux/jenkins:1.0.5
+    image: maxiplux/jenkins:1.0.6
     
     restart: always
     privileged: true
@@ -18,6 +18,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp:/tmp/host_tmp
       #docker exec -it <mycontainer> bash
-      #docker exec -it e187c5aefdb7  /etc/init.d/jenkins start
+      #docker exec -it jenkins  mkdir /home/jenkins/.kube
+      #docker exec -it jenkins  /etc/init.d/jenkins start
       #docker exec -it e187c5aefdb7  cat /var/lib/jenkins/secrets/initialAdminPassword
+      #sh "sed -i 's/mydockerhubuser\\/my-app:previous_tag/mydockerhubuser\\/my-app:${NEW_TAG}/' deployment.yaml"
+      #sed -i 's/TAG_HERE/PEPE/g' deployment.yml
 
