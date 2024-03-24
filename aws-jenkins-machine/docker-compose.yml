@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   jenkins:
-    image: maxiplux/jenkins:1.0.4
+    image: maxiplux/jenkins:1.0.5
     
     restart: always
     privileged: true
@@ -9,13 +9,15 @@ services:
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
       - DOCKER_PASSWORD=TOKEN_HERE
+      - DOCKER_USERNAME=maxiplux
     ports:
       - 8080:8080
       - 50000:50000
     container_name: jenkins
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/ubuntu:/var/jenkins_home
       - /tmp:/tmp/host_tmp
       #docker exec -it <mycontainer> bash
+      #docker exec -it e187c5aefdb7  /etc/init.d/jenkins start
+      #docker exec -it e187c5aefdb7  cat /var/lib/jenkins/secrets/initialAdminPassword
 
