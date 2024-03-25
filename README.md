@@ -39,8 +39,10 @@ The architecture involves several key components:
 
 ### Spinning Up the Jenkins Server and Container Infrastructure
 
-1. [Solution:doc/tutorial.docx]
-2. Video with full details. https://www.youtube.com/watch?v=QwN1tP6YZs4&ab_channel=JuanFranciscoMosquera
+
+1. [Full document about how to install and configure this project.](https://github.com/yourusername/yourrepository/blob/main/tutorial.docx)
+
+2. [Video with full details.] (https://www.youtube.com/watch?v=QwN1tP6YZs4&ab_channel=JuanFranciscoMosquera)
 
 
 
