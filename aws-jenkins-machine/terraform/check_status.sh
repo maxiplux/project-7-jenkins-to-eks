@@ -9,4 +9,4 @@ while [ $status_code -ne 403 ]; do
     sleep 5 # wait for 5 seconds before trying again
 done
 
-echo "Received 200 OK from server."
+echo "Received 403 OK from server."
