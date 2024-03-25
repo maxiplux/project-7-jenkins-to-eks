@@ -75,6 +75,7 @@ RUN jenkins --version
 RUN sudo usermod -aG docker jenkins
 RUN sudo touch  /var/run/docker.sock && sudo chown jenkins:jenkins /var/run/docker.sock
 RUN sudo chmod a+rwx /var/run/docker.sock
+#RUN sudo chmod 777 /var/run/docker.sock
 
 
 

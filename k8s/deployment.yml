@@ -16,7 +16,7 @@ spec:
       containers:
       - name: python-app
         
-        image: maxiplux/fastapidevops-auth-sqlite:1.0.0
+        image: maxiplux/fastapidevops-auth-sqlite:8fdae4fc658e68d083ee8bd40f62f071149f3903
         securityContext:
           allowPrivilegeEscalation: false
           runAsUser: 0

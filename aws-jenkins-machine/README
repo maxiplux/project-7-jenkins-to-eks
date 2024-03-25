@@ -1,0 +1,29 @@
+# Terraform AWS Infrastructure Setup
+
+## Overview
+
+This Terraform project provisions a fully functional AWS infrastructure, setting up a VPC, subnet, internet gateway, NAT gateway, and an AWS instance. It is tailored for deploying and running a Jenkins server with Docker, alongside necessary tools like kubectl and AWS CLI.
+
+## Features
+
+- **VPC Creation:** Configures a Virtual Private Cloud with a CIDR block of `172.16.0.0/16`.
+- **Subnet Configuration:** Sets up a subnet within the VPC to facilitate resource allocation.
+- **Internet and NAT Gateway:** Ensures outbound internet access for instances in the private subnet.
+- **AWS Instance Provisioning:** Deploys an AWS instance, using custom user data for installing and configuring Jenkins, Docker, kubectl, and AWS CLI.
+- **SSH Key Pair Generation:** Generates an SSH key pair for secure access to the instance.
+
+## Prerequisites
+
+- Terraform v1.0 or higher
+- An AWS account with the necessary permissions to create the resources listed above
+- AWS CLI configured on your machine
+
+## Usage
+
+1. **Clone the Repository:**
+
+   ```bash
+    git clone https://github.com/maxiplux/project-7-jenkins-to-eks.git
+    cd  project-7-jenkins-to-eks/aws-jenkins-machine/terraform
+    terraform init
+    terraform apply

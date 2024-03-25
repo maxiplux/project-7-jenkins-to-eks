@@ -172,7 +172,7 @@ provider "tls" {}
 
 
 resource "aws_instance" "terraform_instance_master" {
-  ami      = "ami-0b8b44ec9a8f90422"
+  ami      = "ami-080e1f13689e07408"
   key_name = aws_key_pair.generated_key.key_name
 
   instance_type = "t2.medium"
@@ -223,7 +223,7 @@ resource "aws_instance" "terraform_instance_master" {
 
               cd /tmp && curl -LO  https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv kubectl /usr/local/bin
               cd /tmp && https://raw.githubusercontent.com/maxiplux/project-7-jenkins-to-eks/main/aws-jenkins-machine/docker-compose.yml
-              cd /tmp && sudo docker compose up -d
+              cd /tmp && docker compose up -d
               docker exec -it jenkins  /etc/init.d/jenkins start
               echo "echo found" > /tmp/STATUS
               EOF
