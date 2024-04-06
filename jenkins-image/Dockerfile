@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 
 
 # Install Java 17 using OpenJDK
-RUN apt-get update && apt-get install -y openjdk-17-jdk
+RUN apt-get update && apt-get install -y openjdk-21-jdk
 
 # Install Python 3.11
 RUN add-apt-repository -y ppa:deadsnakes/ppa && apt-get update && apt-get install -y python3.11
